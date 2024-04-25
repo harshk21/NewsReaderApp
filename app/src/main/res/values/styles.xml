@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Headline" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SubHeading" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>
