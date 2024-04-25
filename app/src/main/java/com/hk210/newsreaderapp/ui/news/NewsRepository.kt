@@ -1,8 +1,6 @@
 package com.hk210.newsreaderapp.ui.news
 
 import android.content.Context
-import android.util.JsonReader
-import android.util.Log
 import com.google.gson.Gson
 import com.hk210.newsreaderapp.BuildConfig
 import com.hk210.newsreaderapp.R
@@ -13,11 +11,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
-import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
-import java.net.MalformedURLException
 import java.net.SocketTimeoutException
 import java.net.URI
 import java.net.UnknownHostException
