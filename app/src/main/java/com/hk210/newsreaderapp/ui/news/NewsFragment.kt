@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.hk210.newsreaderapp.R
 import com.hk210.newsreaderapp.alert.Alert
 import com.hk210.newsreaderapp.databinding.NewsFragmentBinding
 import com.hk210.newsreaderapp.model.Article
