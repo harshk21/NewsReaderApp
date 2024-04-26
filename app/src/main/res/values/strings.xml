@@ -6,6 +6,8 @@
     <string name="news">News</string>
     <string name="filters">filters</string>
     <string name="news_author">By %s</string>
+    <string name="search_hint">Search...</string>
+    <string name="results_not_foun_mssage">No results found</string>
 
     <string-array name="filters">
         <item>General</item>
