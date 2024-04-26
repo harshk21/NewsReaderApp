@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.hk210.newsreaderapp.R
 import com.hk210.newsreaderapp.alert.Alert
 import com.hk210.newsreaderapp.databinding.NewsFragmentBinding
 import com.hk210.newsreaderapp.model.Article
@@ -17,12 +19,12 @@ import com.hk210.newsreaderapp.ui.news.adapter.NewsAdapter
 import com.hk210.newsreaderapp.utils.NetworkResult
 import com.hk210.newsreaderapp.utils.loader.LoaderUtils
 import com.hk210.newsreaderapp.utils.network.NetworkConnectivityObserver
+import com.hk210.newsreaderapp.utils.network.NetworkDialogUtils
 import com.hk210.newsreaderapp.utils.network.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 @AndroidEntryPoint
 class NewsFragment : Fragment() {
@@ -73,11 +75,12 @@ class NewsFragment : Fragment() {
                 when (networkStatus) {
                     Status.Available -> {
                         observeNewsResponse()
+                        NetworkDialogUtils.hideDialog()
                         binding.newsList.visibility = View.VISIBLE
                     }
 
                     else -> {
-
+                        NetworkDialogUtils.showDialog(requireContext(), false)
                         binding.newsList.visibility = View.GONE
                     }
                 }

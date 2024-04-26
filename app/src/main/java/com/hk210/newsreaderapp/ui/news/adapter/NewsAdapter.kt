@@ -10,10 +10,9 @@ import com.hk210.newsreaderapp.utils.loadImage
 
 class NewsAdapter(
     private val context: Context,
-    private val items: List<Article?>,
-    private val onItemClickListener: (Article) -> Unit
-) :
-    RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+    private val articles: List<Article?>,
+    private val onArticleClicked: (Article) -> Unit
+) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: NewsLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -32,13 +31,13 @@ class NewsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(articles[position])
         holder.itemView.setOnClickListener {
-            items[position]?.let { article -> onItemClickListener.invoke(article) }
+            articles[position]?.let { article -> onArticleClicked.invoke(article) }
         }
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return articles.size
     }
 }
