@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.hk210.newsreaderapp.R
 import com.hk210.newsreaderapp.databinding.NewsLayoutBinding
 import com.hk210.newsreaderapp.model.Article
 import com.hk210.newsreaderapp.utils.loadImage
@@ -18,7 +19,7 @@ class NewsAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(article: Article?) {
             binding.newsTitle.text = article?.title
-            binding.newsAuthor.text = article?.author ?: article?.source?.name
+            binding.newsAuthor.text = context.getString(R.string.news_author, article?.author ?: article?.source?.name)
             binding.newsImage.loadImage(context, article?.urlToImage.toString())
             binding.newsSource.text = article?.source?.name
         }
