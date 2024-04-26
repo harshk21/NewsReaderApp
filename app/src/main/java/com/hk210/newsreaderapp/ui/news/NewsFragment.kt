@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,6 +36,9 @@ class NewsFragment : Fragment() {
 
     private val viewModel: NewsViewModel by viewModels()
 
+    private var articles: List<Article?>? = null
+    private var newsAdapter: NewsAdapter? = null
+
     @Inject
     lateinit var networkConnectivityObserver: NetworkConnectivityObserver
 
@@ -49,6 +53,7 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeNetworkChange()
+        onSearch()
     }
 
     private fun observeNewsResponse() {
@@ -63,7 +68,8 @@ class NewsFragment : Fragment() {
 
                 is NetworkResult.Success -> {
                     LoaderUtils.hideDialog()
-                    setNews(response.data?.articles)
+                    articles = response.data?.articles
+                    setNews()
                 }
             }
         }
@@ -88,15 +94,24 @@ class NewsFragment : Fragment() {
         }
     }
 
-    private fun setNews(articles: List<Article?>?) {
-        binding.newsList.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = articles?.let {
+    private fun setNews() {
+        if (articles?.isEmpty() == true) {
+            binding.newsList.visibility = View.GONE
+            binding.emptyNewsView.visibility = View.VISIBLE
+        } else {
+            binding.newsList.visibility = View.VISIBLE
+            binding.emptyNewsView.visibility = View.GONE
+            newsAdapter = articles?.let {
                 NewsAdapter(requireContext(), it) { article ->
                     showArticle(article.url)
                 }
             }
+            binding.newsList.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = newsAdapter
+            }
         }
+
     }
 
     private fun showArticle(url: String?) {
@@ -104,5 +119,34 @@ class NewsFragment : Fragment() {
             .setUrlBarHidingEnabled(true)
             .build()
         intent.launchUrl(requireActivity(), Uri.parse(url))
+    }
+
+    private fun onSearch() {
+        binding.searchView.setOnQueryTextListener(object : OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                search(newText ?: "")
+                return true
+            }
+        })
+    }
+
+    fun search(searchQuery: String) {
+        val filteredList = articles?.filter {
+            it?.title?.equals(searchQuery) == true
+        }
+
+        if(filteredList?.isEmpty() == true) {
+            binding.newsList.visibility = View.GONE
+            binding.emptyNewsView.visibility = View.VISIBLE
+        } else {
+            binding.newsList.visibility = View.VISIBLE
+            binding.emptyNewsView.visibility = View.GONE
+            articles = filteredList
+            newsAdapter?.notifyDataSetChanged()
+        }
     }
 }
