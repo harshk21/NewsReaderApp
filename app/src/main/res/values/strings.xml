@@ -5,6 +5,7 @@
     <string name="generic_failure_message">Oops something went wrong. Its not you its us.</string>
     <string name="news">News</string>
     <string name="filters">filters</string>
+    <string name="news_author">By %s</string>
 
     <string-array name="filters">
         <item>General</item>
