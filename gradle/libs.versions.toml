@@ -1,6 +1,8 @@
 [versions]
 agp = "8.3.2"
 browser = "1.5.0"
+firebaseBom = "32.8.1"
+firebaseBomVersion = "32.8.1"
 gson = "2.10.1"
 kotlin = "1.9.0"
 coreSplashscreen = "1.0.1"
@@ -19,11 +21,15 @@ lifecycleLivedataKtx = "2.6.0"
 lifecycleViewmodelKtx = "2.6.0"
 fragmentKtx = "1.6.2"
 glideVersion = "4.16.0"
+firebase-messaging = "23.4.1"
+firebase = "4.4.1"
+workManager = "2.7.0"
 
 [libraries]
 androidx-browser = { module = "androidx.browser:browser", version.ref = "browser" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+firebase-cloud-messaging = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebase-messaging" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -41,6 +47,7 @@ androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecy
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
+work-manager = { module = "androidx.work:work-runtime-ktx", version.ref = "workManager" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -49,4 +56,5 @@ kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
 hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "kotlin"  }
+firebase-plugin = { id = "com.google.gms.google-services", version.ref = "firebase"}
 

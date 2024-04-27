@@ -6,4 +6,5 @@ plugins {
     alias(libs.plugins.safe.args) apply false
     alias(libs.plugins.hilt.plugin) apply false
     alias(libs.plugins.kotlin.parcelize) apply false
+    alias(libs.plugins.firebase.plugin) apply false
 }
