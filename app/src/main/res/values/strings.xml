@@ -6,8 +6,10 @@
     <string name="news">News</string>
     <string name="filters">filters</string>
     <string name="news_author">By %s</string>
-    <string name="search_hint">Search...</string>
-    <string name="results_not_foun_mssage">No results found</string>
+    <string name="search_hint">Search…</string>
+    <string name="results_not_found_message">No results found</string>
+    <string name="fcm_message">FCM Message</string>
+    <string name="default_notification_channel_id">FCM-NOTIFICATION</string>
 
     <string-array name="filters">
         <item>General</item>

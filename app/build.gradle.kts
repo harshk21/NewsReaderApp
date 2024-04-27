@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.safe.args)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.firebase.plugin)
 }
 
 android {
@@ -85,6 +86,12 @@ dependencies {
 
     // Chrome tab
     implementation (libs.androidx.browser)
+
+    // Firebase
+    implementation(libs.firebase.cloud.messaging)
+
+    // Work Manger
+    implementation(libs.work.manager)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

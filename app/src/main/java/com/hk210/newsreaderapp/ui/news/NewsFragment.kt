@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -67,7 +68,7 @@ class NewsFragment : Fragment() {
                 is NetworkResult.Success -> {
                     LoaderUtils.hideDialog()
                     articles = response.data?.articles
-                    setNews()
+                    setNews(articles)
                 }
             }
         }
@@ -92,7 +93,7 @@ class NewsFragment : Fragment() {
         }
     }
 
-    private fun setNews() {
+    private fun setNews(articles: List<Article?>?) {
         if (articles?.isEmpty() == true) {
             binding.newsList.visibility = View.GONE
             binding.emptyNewsView.visibility = View.VISIBLE
@@ -120,31 +121,29 @@ class NewsFragment : Fragment() {
     }
 
     private fun onSearch() {
-        binding.searchView.setOnQueryTextListener(object : OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                search(newText ?: "")
-                return true
-            }
-        })
+        binding.searchView.doOnTextChanged { text, _, _, _ ->
+            search(text.toString())
+        }
     }
 
     fun search(searchQuery: String) {
         val filteredList = articles?.filter {
-            it?.title?.equals(searchQuery) == true
+            it?.title?.lowercase()?.contains( searchQuery) == true
         }
 
-        if(filteredList?.isEmpty() == true) {
-            binding.newsList.visibility = View.GONE
-            binding.emptyNewsView.visibility = View.VISIBLE
-        } else {
-            binding.newsList.visibility = View.VISIBLE
-            binding.emptyNewsView.visibility = View.GONE
-            articles = filteredList
-            newsAdapter?.notifyDataSetChanged()
+        when {
+            searchQuery.isEmpty() -> {
+                setNews(articles)
+            }
+            filteredList?.isEmpty() == true -> {
+                binding.newsList.visibility = View.GONE
+                binding.emptyNewsView.visibility = View.VISIBLE
+            }
+            else -> {
+                binding.newsList.visibility = View.VISIBLE
+                binding.emptyNewsView.visibility = View.GONE
+                setNews(filteredList)
+            }
         }
     }
 }
