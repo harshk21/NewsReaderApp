@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "90500151216",
+    "project_id": "newsreaderapp-f4a41",
+    "storage_bucket": "newsreaderapp-f4a41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90500151216:android:385a8e2808c2ae8ee88875",
+        "android_client_info": {
+          "package_name": "com.hk210.newsreaderapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqgd5rT3G8YAxw672BAotA2nE9CfpXosQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
