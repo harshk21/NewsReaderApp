@@ -22,15 +22,8 @@ This project is a basic news reader app with background change in a RecyclerView
 
 #### Artifacts:
 
-![Screenshot_20240428_150117](https://github.com/harshk21/NewsReaderApp/assets/26200591/1767fa1d-225f-4a97-9b9c-f151b6bc501b)
+![Group 1](https://github.com/harshk21/NewsReaderApp/assets/26200591/ffaa0b65-1abe-4a0d-a6c1-4a0b91644d2d)
 
-![Screenshot_20240428_150134](https://github.com/harshk21/NewsReaderApp/assets/26200591/b5af05ea-11e5-4a50-9aca-20dfc12c1a32)
-
-![Screenshot_20240428_150206](https://github.com/harshk21/NewsReaderApp/assets/26200591/2487c6f9-1822-4bac-a202-7b86668b70c4)
-
-![Screenshot_20240428_150227](https://github.com/harshk21/NewsReaderApp/assets/26200591/cf89f18a-f556-4b98-a212-f428f4e1d5c8)
-
-![Screenshot_20240428_150241](https://github.com/harshk21/NewsReaderApp/assets/26200591/7f2eaf3b-a84b-4019-a6b1-5a163089833a)
 
 
 
