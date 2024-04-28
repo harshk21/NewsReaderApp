@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.hk210.newsreaderapp.R
 import com.hk210.newsreaderapp.alert.Alert
 import com.hk210.newsreaderapp.databinding.NewsFragmentBinding
 import com.hk210.newsreaderapp.model.Article
@@ -37,6 +39,8 @@ class NewsFragment : Fragment() {
     private var articles: List<Article?>? = null
     private var newsAdapter: NewsAdapter? = null
 
+    private var isAllFabVisible = false
+
     @Inject
     lateinit var networkConnectivityObserver: NetworkConnectivityObserver
 
@@ -52,6 +56,65 @@ class NewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeNetworkChange()
         onSearch()
+        initialFiltersState()
+        onFiltersClicked()
+        onOldToNewFabCLicked()
+        onNewToOldClicked()
+    }
+
+    private fun initialFiltersState() {
+        binding.filtersFab.shrink()
+        binding.filterNewToOld.visibility = View.GONE
+        binding.filterOldToNew.visibility = View.GONE
+        isAllFabVisible = false
+    }
+
+    private fun onFiltersClicked() {
+        binding.filtersFab.setOnClickListener {
+            if(!isAllFabVisible) {
+                filterExtendedState()
+            } else {
+                initialFiltersState()
+            }
+        }
+    }
+
+    private fun filterExtendedState() {
+        binding.filtersFab.extend()
+        binding.filterNewToOld.visibility = View.VISIBLE
+        binding.filterOldToNew.visibility = View.VISIBLE
+        isAllFabVisible = true
+    }
+
+    private fun onOldToNewFabCLicked() {
+        binding.filterOldToNew.setOnClickListener {
+            binding.filterOldToNew.text = getString(R.string.filter_old_to_new)
+            onFilterClicked(binding.filterOldToNew, "oldest")
+            if(binding.filterNewToOld.isExtended) {
+                binding.filterNewToOld.shrink()
+            }
+        }
+    }
+
+    private fun onNewToOldClicked() {
+        binding.filterNewToOld.setOnClickListener {
+            binding.filterNewToOld.text = getString(R.string.filter_new_to_old)
+            onFilterClicked(binding.filterNewToOld, "latest")
+            if(binding.filterOldToNew.isExtended) {
+                binding.filterOldToNew.shrink()
+            }
+        }
+    }
+
+    private fun onFilterClicked(extendedFloatingActionButton: ExtendedFloatingActionButton, filter: String) {
+        if(extendedFloatingActionButton.isExtended) {
+            viewModel.fetchNews()
+            extendedFloatingActionButton.shrink()
+        } else {
+            viewModel.sortNews(filter)
+            extendedFloatingActionButton.extend()
+        }
+
     }
 
     private fun observeNewsResponse() {
@@ -86,6 +149,7 @@ class NewsFragment : Fragment() {
                     else -> {
                         NetworkDialogUtils.showDialog(requireContext(), false)
                         binding.newsList.visibility = View.GONE
+                        initialFiltersState()
                     }
                 }
             }
@@ -125,7 +189,7 @@ class NewsFragment : Fragment() {
         }
     }
 
-    fun search(searchQuery: String) {
+    private fun search(searchQuery: String) {
         val filteredList = articles?.filter {
             it?.title?.lowercase()?.contains( searchQuery) == true
         }

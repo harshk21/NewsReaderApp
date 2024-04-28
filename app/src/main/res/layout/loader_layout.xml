@@ -7,8 +7,9 @@
 
     <ProgressBar
         android:layout_width="64dp"
+        android:indeterminateTint="@color/primary"
         android:layout_height="64dp"
-        android:progressTint="@color/design_default_color_primary"
+        android:progressTint="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

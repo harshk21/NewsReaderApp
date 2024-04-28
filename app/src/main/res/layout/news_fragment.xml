@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".ui.news.NewsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,12 +41,12 @@
         android:layout_height="42dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="12dp"
-        android:hint="@string/search_hint"
-        android:drawableStart="@drawable/ic_search"
-        android:padding="12dp"
-        android:fontFamily="@font/montserrat_regular"
-        android:drawablePadding="8dp"
         android:background="@drawable/search_bg"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="8dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:hint="@string/search_hint"
+        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -53,11 +54,11 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/empty_news_view"
+        style="@style/Headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/results_not_found_message"
-        style="@style/Headline"
         android:layout_marginTop="12dp"
+        android:text="@string/results_not_found_message"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/search_view"
         app:layout_constraintStart_toStartOf="@+id/search_view"
@@ -72,4 +73,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_view" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/filters_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/filters"
+        android:textColor="@color/text_color"
+        app:backgroundTint="@color/primary"
+        app:icon="@drawable/ic_filter"
+        app:iconTint="@color/text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/filter_old_to_new"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@string/filter_new_to_old"
+        android:textColor="@color/text_color"
+        app:backgroundTint="@color/primary"
+        app:icon="@drawable/ic_old_to_new"
+        app:iconTint="@color/text_color"
+        app:layout_constraintBottom_toTopOf="@id/filter_new_to_old"
+        app:layout_constraintEnd_toEndOf="@id/filters_fab" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/filter_new_to_old"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@string/filter_old_to_new"
+        android:textColor="@color/text_color"
+        app:backgroundTint="@color/primary"
+        app:icon="@drawable/ic_new_to_old"
+        app:iconTint="@color/text_color"
+        app:layout_constraintBottom_toTopOf="@id/filters_fab"
+        app:layout_constraintEnd_toEndOf="@id/filters_fab" />
 </androidx.constraintlayout.widget.ConstraintLayout>

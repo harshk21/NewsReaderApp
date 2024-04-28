@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.hk210.newsreaderapp.R
 
 fun AppCompatImageView.loadImage(context: Context, url: String) {
 
@@ -16,7 +18,8 @@ fun AppCompatImageView.loadImage(context: Context, url: String) {
         .with(context)
         .load(url)
         .centerCrop()
-        .error(android.R.drawable.stat_notify_error)
+        .error(R.drawable.ic_error)
         .placeholder(circularProgressDrawable)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
         .into(this)
 }

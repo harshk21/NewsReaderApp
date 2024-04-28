@@ -4,12 +4,14 @@
     <string name="connection_timeout_message">"Connection timed out. Please try again later! "</string>
     <string name="generic_failure_message">Oops something went wrong. Its not you its us.</string>
     <string name="news">News</string>
-    <string name="filters">filters</string>
+    <string name="filters">Filters</string>
     <string name="news_author">By %s</string>
     <string name="search_hint">Search…</string>
     <string name="results_not_found_message">No results found</string>
     <string name="fcm_message">FCM Message</string>
     <string name="default_notification_channel_id">FCM-NOTIFICATION</string>
+    <string name="filter_old_to_new">Old to new</string>
+    <string name="filter_new_to_old">New to old</string>
 
     <string-array name="filters">
         <item>General</item>
